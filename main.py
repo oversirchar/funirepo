@@ -18,3 +18,18 @@ def get_archive_data(query: str) -> dict:
     return requests.get(url, params={"q": query}).json()
 
 #good
+    try:
+        link = (
+            BeautifulSoup(res.text, "html.parser")
+            .find("div", attrs={"class": "yuRUbf"})
+            .find("a")
+            .get("href")
+        )
+
+    except AttributeError:
+        link = parse_qs(
+            BeautifulSoup(res.text, "html.parser")
+            .find("div", attrs={"class": "kCrYT"})
+            .find("a")
+            .get("href")
+        )["url"][0]
