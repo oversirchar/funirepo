@@ -17,3 +17,4 @@ def get_archive_data(query: str) -> dict:
     url = "https://images-api.nasa.gov/search"
     return requests.get(url, params={"q": query}).json()
 
+#good
